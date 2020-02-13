@@ -32,16 +32,23 @@ class Serializer
         $class = new ClassType($featureTitle->toPascal());
 
         foreach ($feature->getScenarios() as $scenario) {
+            $steps = $scenario->getSteps();
 
-            $return = "[\n";
-            foreach ($scenario->getSteps() as $step) {
-                $return .= "\"" . $step->getText() . "\",\n";
+            $count = count($steps);
+            $i = 0;
+
+            $array = '';
+            foreach ($steps as $step) {
+                $array .= "  \"" . $step->getKeyword() . ' ' . $step->getText() . "\"";
+                if (++$i != $count) {
+                    $array .= ",\n";
+                }
             }
 
             $scenarioTitle = new Convert('Scenario ' . $scenario->getTitle());
             $class->addMethod($scenarioTitle->toCamel())
                 ->setReturnType(Type::ARRAY)
-                ->setBody($return);
+                ->setBody("return [\n" . $array . "\n];");
         }
 
         return $class;

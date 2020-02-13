@@ -44,7 +44,7 @@ class SerializerTest extends TestCase
         ));
         $lexer = new Lexer($keywords);
         $parser = new Parser($lexer);
-        $feature = $parser->parse(file_get_contents('tests/fixtures/serialize.feature'));
+        $feature = $parser->parse(file_get_contents('tests/fixtures/contact-form.feature'));
 
         $serializer = new Serializer();
         $class = $serializer->serialize($feature);
@@ -57,6 +57,6 @@ class SerializerTest extends TestCase
         file_put_contents($filename, "<?php\n\n");
         file_put_contents($filename, $printer->printClass($class), FILE_APPEND);
 
-        $this->assertFileEquals('tests/fixtures/SerializeGherkinToPhp.php', 'tests/output/SerializeGherkinToPhp.php');
+        $this->assertFileEquals('tests/fixtures/FeatureContactForm.php', 'tests/output/FeatureContactForm.php');
     }
 }
