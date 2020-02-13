@@ -1,0 +1,8 @@
+#!/usr/bin/env php
+<?php
+
+require_once "vendor/autoload.php";
+
+$command = new Commando\Command();
+
+echo "Hello world";

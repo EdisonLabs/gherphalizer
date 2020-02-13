@@ -1,0 +1,20 @@
+{
+    "name": "edisonlabs/gerphalizer",
+    "description": "Gherkin PHP Serializer that finds and transforms Gherkin files into PHP classes.",
+    "license": "GPL-2.0+",
+    "autoload": {
+        "psr-4": {
+            "EdisonLabs\\Gerphalizer\\": "src/"
+        }
+    },
+    "require": {
+        "behat/gherkin": "^4.6",
+        "nategood/commando": "^0.4",
+        "symfony/finder": "^3",
+        "jawira/case-converter": "^3.4",
+        "nette/php-generator": "^3.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.0"
+    }
+}
