@@ -39,7 +39,7 @@ class Serializer
 
             $array = '';
             foreach ($steps as $step) {
-                $array .= "  \"" . $step->getKeyword() . ' ' . $step->getText() . "\"";
+                $array .= '  "' . $step->getKeyword() . ' ' . $step->getText() . '"';
                 if (++$i != $count) {
                     $array .= ",\n";
                 }
