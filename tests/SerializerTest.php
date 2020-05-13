@@ -10,18 +10,11 @@ use PHPUnit\Framework\TestCase;
 
 use EdisonLabs\Gherphalizer\Serializer;
 
+/**
+ * Tests for \EdisonLabs\Gherphalizer\Serializer
+ */
 class SerializerTest extends TestCase
 {
-    protected function setUp()
-    {
-        parent::setUp();
-    }
-
-    protected function tearDown()
-    {
-        parent::tearDown();
-    }
-
     /**
      * @covers \EdisonLabs\Gherphalizer\Serializer::serialize
      */
@@ -38,8 +31,8 @@ class SerializerTest extends TestCase
                 'when'             => 'When',
                 'then'             => 'Then',
                 'and'              => 'And',
-                'but'              => 'But'
-            ]
+                'but'              => 'But',
+            ],
         ]);
         $lexer = new Lexer($keywords);
         $parser = new Parser($lexer);
