@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/manuee/gherphalizer.svg?branch=master)](https://travis-ci.org/manuee/gherphalizer)
+
 # The Gherphalizer
 
 ## Getting started
