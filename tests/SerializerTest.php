@@ -43,7 +43,7 @@ class SerializerTest extends TestCase
         $this->assertInstanceOf('Nette\PhpGenerator\ClassType', $class);
 
         $name = $class->getName();
-        $filename = "tests/output/$name.php";
+        $filename = dirname(__FILE__)."/output/$name.php";
 
         $printer = new Printer();
         file_put_contents($filename, "<?php\n\n");
