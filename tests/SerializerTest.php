@@ -5,7 +5,6 @@ namespace EdisonLabs\Gerphalizer\Tests;
 use Behat\Gherkin\Keywords\ArrayKeywords;
 use Behat\Gherkin\Lexer;
 use Behat\Gherkin\Parser;
-use Nette\PhpGenerator\ClassType;
 use Nette\PhpGenerator\Printer;
 use PHPUnit\Framework\TestCase;
 
