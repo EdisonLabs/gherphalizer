@@ -43,7 +43,7 @@ class SerializerTest extends TestCase
         ]);
         $lexer = new Lexer($keywords);
         $parser = new Parser($lexer);
-        $feature = $parser->parse(file_get_contents('tests/fixtures/contact-form.feature'));
+        $feature = $parser->parse(file_get_contents(dirname(__FILE__).'/fixtures/contact-form.feature'));
 
         $serializer = new Serializer();
         $class = $serializer->serialize($feature);
