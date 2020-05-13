@@ -25,7 +25,7 @@ before_install:
 
 install:
   - composer global require "squizlabs/php_codesniffer=*"
-  - composer global require escapestudios/symfony2-coding-standard:~3
+  - composer global require --dev escapestudios/symfony2-coding-standard:3.x-dev
   - phpcs --config-set installed_paths "$COMPOSER_VENDOR_PATH/escapestudios/symfony2-coding-standard"
 
 before_script:
