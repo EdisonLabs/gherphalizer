@@ -44,7 +44,7 @@ class SerializerTest extends TestCase
 
         $filename = dirname(__FILE__)."/output/FeatureContactForm.php";
 
-        $printer = new PsrPrinter;
+        $printer = new PsrPrinter();
         file_put_contents($filename, $printer->printFile($file));
 
         $this->assertFileEquals('tests/fixtures/FeatureContactForm.php', 'tests/output/FeatureContactForm.php');
