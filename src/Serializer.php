@@ -7,6 +7,9 @@ use Jawira\CaseConverter\Convert;
 use Nette\PhpGenerator\PhpFile;
 use Nette\PhpGenerator\Type;
 
+/**
+ * Main class for gherphalizer.
+ */
 class Serializer
 {
 
@@ -35,7 +38,7 @@ class Serializer
 
             $array = '';
             foreach ($steps as $step) {
-                $array .= "\t\"".$step->getKeyword().' '.$step->getText() . '"';
+                $array .= "\t\"".$step->getKeyword().' '.$step->getText().'"';
                 if (++$i != $count) {
                     $array .= ",\n";
                 }
@@ -44,7 +47,7 @@ class Serializer
             $scenarioTitle = new Convert('Scenario '.$scenario->getTitle());
             $class->addMethod($scenarioTitle->toCamel())
                 ->setReturnType(Type::ARRAY)
-                ->setBody("return [\n".$array . "\n];")
+                ->setBody("return [\n".$array."\n];")
                 ->addComment($scenarioTitle->toTitle());
         }
 
