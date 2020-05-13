@@ -4,7 +4,7 @@ namespace EdisonLabs\Gherphalizer;
 
 use Behat\Gherkin\Node\FeatureNode;
 use Jawira\CaseConverter\Convert;
-use Nette\PhpGenerator\ClassType;
+use Nette\PhpGenerator\PhpFile;
 use Nette\PhpGenerator\Type;
 
 class Serializer
@@ -15,14 +15,17 @@ class Serializer
      *
      * @param \Behat\Gherkin\Node\FeatureNode $feature
      *
-     * @return \Nette\PhpGenerator\ClassType
+     * @return \Nette\PhpGenerator\PhpFile
      *
      * @throws \Exception
      */
     public function serialize(FeatureNode $feature)
     {
+        $file = new PhpFile();
         $featureTitle = new Convert('Feature '.$feature->getTitle());
-        $class = new ClassType($featureTitle->toPascal());
+        $namespace = $file->addNamespace('GherphalizerScenarios');
+        $class = $namespace->addClass($featureTitle->toPascal());
+        $class->addComment('Scenarios for feature '.$feature->getTitle());
 
         foreach ($feature->getScenarios() as $scenario) {
             $steps = $scenario->getSteps();
@@ -41,9 +44,10 @@ class Serializer
             $scenarioTitle = new Convert('Scenario '.$scenario->getTitle());
             $class->addMethod($scenarioTitle->toCamel())
                 ->setReturnType(Type::ARRAY)
-                ->setBody("return [\n".$array . "\n];");
+                ->setBody("return [\n".$array . "\n];")
+                ->addComment($scenarioTitle->toTitle());
         }
 
-        return $class;
+        return $file;
     }
 }

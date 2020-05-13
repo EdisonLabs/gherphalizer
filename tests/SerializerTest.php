@@ -5,7 +5,7 @@ namespace EdisonLabs\Gherphalizer\Tests;
 use Behat\Gherkin\Keywords\ArrayKeywords;
 use Behat\Gherkin\Lexer;
 use Behat\Gherkin\Parser;
-use Nette\PhpGenerator\Printer;
+use Nette\PhpGenerator\PsrPrinter;
 use PHPUnit\Framework\TestCase;
 
 use EdisonLabs\Gherphalizer\Serializer;
@@ -39,15 +39,13 @@ class SerializerTest extends TestCase
         $feature = $parser->parse(file_get_contents(dirname(__FILE__).'/fixtures/contact-form.feature'));
 
         $serializer = new Serializer();
-        $class = $serializer->serialize($feature);
-        $this->assertInstanceOf('Nette\PhpGenerator\ClassType', $class);
+        $file = $serializer->serialize($feature);
+        $this->assertInstanceOf('Nette\PhpGenerator\PhpFile', $file);
 
-        $name = $class->getName();
-        $filename = dirname(__FILE__)."/output/$name.php";
+        $filename = dirname(__FILE__)."/output/FeatureContactForm.php";
 
-        $printer = new Printer();
-        file_put_contents($filename, "<?php\n\n");
-        file_put_contents($filename, $printer->printClass($class), FILE_APPEND);
+        $printer = new PsrPrinter;
+        file_put_contents($filename, $printer->printFile($file));
 
         $this->assertFileEquals('tests/fixtures/FeatureContactForm.php', 'tests/output/FeatureContactForm.php');
     }
