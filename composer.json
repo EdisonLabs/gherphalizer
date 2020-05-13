@@ -9,12 +9,14 @@
     },
     "require": {
         "behat/gherkin": "^4.6",
+        "composer-plugin-api": "^1.1",
         "nategood/commando": "^0.4",
         "symfony/finder": "^3",
         "jawira/case-converter": "^3.4",
         "nette/php-generator": "^3.3"
     },
     "require-dev": {
+        "composer/composer": "dev-master",
         "phpunit/phpunit": "^7.0"
     }
 }
