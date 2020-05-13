@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/manuee/gherphalizer.svg?branch=master)](https://travis-ci.org/EdisonLabs/gherphalizer)
+[![Build Status](https://travis-ci.org/EdisonLabs/gherphalizer.svg?branch=master)](https://travis-ci.org/EdisonLabs/gherphalizer)
 
 # The Gherphalizer
 
