@@ -28,7 +28,7 @@ class Serializer
         $featureTitle = new Convert('Feature '.$feature->getTitle());
         $namespace = $file->addNamespace('GherphalizerScenarios');
         $class = $namespace->addClass($featureTitle->toPascal());
-        $class->addComment('Scenarios for feature '.$feature->getTitle());
+        $class->addComment('Scenarios for feature '.$feature->getTitle().'.');
 
         foreach ($feature->getScenarios() as $scenario) {
             $steps = $scenario->getSteps();
@@ -38,17 +38,16 @@ class Serializer
 
             $array = '';
             foreach ($steps as $step) {
-                $array .= "\t\"".$step->getKeyword().' '.$step->getText().'"';
-                if (++$i != $count) {
-                    $array .= ",\n";
-                }
+                $array .= "\t\"".$step->getKeyword().' '.$step->getText().'",'."\n";
             }
 
             $scenarioTitle = new Convert('Scenario '.$scenario->getTitle());
             $class->addMethod($scenarioTitle->toCamel())
                 ->setReturnType(Type::ARRAY)
-                ->setBody("return [\n".$array."\n];")
-                ->addComment($scenarioTitle->toTitle());
+                ->setBody("return [\n".$array.'];')
+                ->addComment($scenarioTitle->toSentence().'.')
+                ->addComment("\n@return array")
+                ->addComment("  The scenario's steps.");
         }
 
         return $file;
