@@ -1,4 +1,4 @@
-# The Gerphalizer
+# The Gherphalizer
 
 ## Getting started
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace EdisonLabs\Gerphalizer\Tests;
+namespace EdisonLabs\Gherphalizer\Tests;
 
 use Behat\Gherkin\Keywords\ArrayKeywords;
 use Behat\Gherkin\Lexer;
@@ -8,7 +8,7 @@ use Behat\Gherkin\Parser;
 use Nette\PhpGenerator\Printer;
 use PHPUnit\Framework\TestCase;
 
-use EdisonLabs\Gerphalizer\Serializer;
+use EdisonLabs\Gherphalizer\Serializer;
 
 class SerializerTest extends TestCase
 {
@@ -23,12 +23,12 @@ class SerializerTest extends TestCase
     }
 
     /**
-     * @covers \EdisonLabs\Gerphalizer\Serializer::serialize
+     * @covers \EdisonLabs\Gherphalizer\Serializer::serialize
      */
     public function testSerialize()
     {
-        $keywords = new ArrayKeywords(array(
-            'en' => array(
+        $keywords = new ArrayKeywords([
+            'en' => [
                 'feature'          => 'Feature',
                 'background'       => 'Background',
                 'scenario'         => 'Scenario',
@@ -39,8 +39,8 @@ class SerializerTest extends TestCase
                 'then'             => 'Then',
                 'and'              => 'And',
                 'but'              => 'But'
-            )
-        ));
+            ]
+        ]);
         $lexer = new Lexer($keywords);
         $parser = new Parser($lexer);
         $feature = $parser->parse(file_get_contents('tests/fixtures/contact-form.feature'));

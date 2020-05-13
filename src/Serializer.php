@@ -1,23 +1,14 @@
 <?php
 
-namespace EdisonLabs\Gerphalizer;
+namespace EdisonLabs\Gherphalizer;
 
 use Behat\Gherkin\Node\FeatureNode;
 use Jawira\CaseConverter\Convert;
 use Nette\PhpGenerator\ClassType;
 use Nette\PhpGenerator\Type;
-use PHPUnit\Exception;
 
 class Serializer
 {
-
-    /**
-     * Constructor.
-     */
-    function __construct()
-    {
-
-    }
 
     /**
      * Serialize a feature file into a PHP class.
