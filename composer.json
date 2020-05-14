@@ -1,6 +1,7 @@
 {
     "name": "edisonlabs/gherphalizer",
-    "description": "Gherkin PHP Serializer that finds and transforms Gherkin files into PHP classes.",
+    "type": "composer-plugin",
+    "description": "Provides a composer plugin that finds and transforms Gherkin files into PHP classes.",
     "license": "GPL-2.0+",
     "autoload": {
         "psr-4": {
@@ -23,5 +24,8 @@
     "require-dev": {
         "composer/composer": "dev-master",
         "phpunit/phpunit": "^7.0"
+    },
+    "extra": {
+        "class": "EdisonLabs\\Gherphalizer\\Plugin"
     }
 }
