@@ -33,7 +33,19 @@ class GherphalizerCommand extends BaseCommand
         }
 
         $serializer = new Serializer($configParameters['files'], $configParameters['locations'], $configParameters['output-dir']);
-        $serializer->createPhpFiles();
+        $processedFiles = $serializer->createPhpFiles();
+
+        if (empty($processedFiles)) {
+            $output->write('>gherphalizer: No php files have been created', true);
+
+            return;
+        }
+
+        foreach ($processedFiles as $fileName => $filePath) {
+            $output->write("> gherphalizer: Generating $filePath", true);
+        }
+        $count = count($processedFiles);
+        $output->write("> gherphalizer: Generated $count PHP files", true);
     }
 
     /**

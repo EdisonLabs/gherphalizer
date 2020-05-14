@@ -117,5 +117,8 @@ class PluginHandler
         foreach ($processedFiles as $fileName => $filePath) {
             $this->io->write("> gherphalizer: Generating $filePath", true);
         }
+
+        $count = count($processedFiles);
+        $this->io->write("> gherphalizer: Generated $count PHP files", true);
     }
 }
