@@ -50,7 +50,7 @@ class Serializer
      *
      * @var PsrPrinter
      */
-    public $printer;
+    protected $printer;
 
     /**
      * Serializer constructor.
