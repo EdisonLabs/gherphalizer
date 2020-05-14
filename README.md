@@ -28,7 +28,7 @@ Where:
 - `output-dir`: The directory where the PHP files will be placed.
 
 ## How does it work
-Every time that you run `composer install` or `composer update`, the plugin will scan the locations for Gherking feature files, generating PHP classes for them into the output directory.
+Every time you run `composer install` or `composer update`, the plugin will scan the locations for Gherkin feature files, generating PHP classes for them into the output directory.
 
 ### Command
 You can also use the command `composer gherphalizer` to run the process.
@@ -49,19 +49,15 @@ The content of the configuration file passed in needs to be in this format:
 }
 ```
 
-## Automated Tests and Code Sniffer
-This repository is integrated with [Travis CI](https://travis-ci.com/EdisonLabs/gherphalizer) to perform tests and detect PHP standards violations.
+## Contributing
 
-
-## Getting started
-
-Install all dependencies:
+Clone the repository and install all dependencies:
 
 ```
 $ composer install
 ```
 
-Run the tests to see the library at play:
+To run the tests simply:
 
 ```
 $ ./vendor/bin/phpunit
@@ -70,3 +66,6 @@ $ ./vendor/bin/phpunit
 ## Notes
 
 - Code formatting in your IDE might have an impact on the tests (how the fixture is formatted vs. the test output)
+
+## Automated Tests and Code Sniffer
+This repository integrates with [Travis CI](https://travis-ci.com/EdisonLabs/gherphalizer) to perform tests and detect PHP standards violations.
