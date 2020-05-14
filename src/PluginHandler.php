@@ -114,10 +114,8 @@ class PluginHandler
             return;
         }
 
-        foreach ($processedFiles as $fileName => $filePaths) {
-            foreach ($filePaths as $filePath) {
-                $this->io->write("> gherphalizer: Generating $filePath", true);
-            }
+        foreach ($processedFiles as $fileName => $filePath) {
+            $this->io->write("> gherphalizer: Generating $filePath", true);
         }
     }
 }

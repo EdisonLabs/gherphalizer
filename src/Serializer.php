@@ -39,6 +39,20 @@ class Serializer
     public $sourcePaths;
 
     /**
+     * The Gherkin file parser.
+     *
+     * @var Parser
+     */
+    public $parser;
+
+    /**
+     * The PHP generator printer.
+     *
+     * @var PsrPrinter
+     */
+    public $printer;
+
+    /**
      * Serializer constructor.
      *
      * @param array  $files
@@ -58,6 +72,9 @@ class Serializer
         }
 
         $this->outputDir = $outputDir;
+
+        $this->parser = new Parser(new Lexer($this->getArrayKeywords()));
+        $this->printer = new PsrPrinter();
     }
 
     /**
@@ -118,34 +135,8 @@ class Serializer
             return [];
         }
 
-        $keywords = new ArrayKeywords([
-            'en' => [
-                'feature'          => 'Feature',
-                'background'       => 'Background',
-                'scenario'         => 'Scenario',
-                'scenario_outline' => 'Scenario Outline',
-                'examples'         => 'Examples',
-                'given'            => 'Given',
-                'when'             => 'When',
-                'then'             => 'Then',
-                'and'              => 'And',
-                'but'              => 'But',
-            ],
-        ]);
-        $lexer = new Lexer($keywords);
-        $parser = new Parser($lexer);
-        $printer = new PsrPrinter();
-
-        foreach ($gherkinFeatureFilePaths as $fileName => $filePaths) {
-            foreach ($filePaths as $file => $filepath) {
-                $feature = $parser->parse(file_get_contents($filepath));
-                $featureTitle = new Convert($feature->getTitle());
-                $outputFileName = $featureTitle->toPascal().'.php';
-                $file = $this->serialize($feature);
-
-                // Save file.
-                file_put_contents($this->outputDir.'/'.$outputFileName, $printer->printFile($file));
-            }
+        foreach ($gherkinFeatureFilePaths as $fileName => $filePath) {
+            $this->createPhpFile($filePath);
         }
 
         return $gherkinFeatureFilePaths;
@@ -179,7 +170,7 @@ class Serializer
             $fileName = str_replace('.feature', '', $file->getFilename());
 
             /** @var \Symfony\Component\Finder\SplFileInfo $file */
-            $featureFiles[$fileName][] = $file->getRealPath();
+            $featureFiles[$fileName] = $file->getRealPath();
         }
 
         return $featureFiles;
@@ -194,5 +185,47 @@ class Serializer
         if (!is_dir($this->outputDir) && !mkdir($this->outputDir, 0700)) {
             throw new \RuntimeException(sprintf('Output directory does not exist and it was not able to be created: %s.', $this->outputDir));
         }
+    }
+
+    /**
+     * Creates a single PHP file.
+     *
+     * @param string $filepath
+     *   The path to the Gherkin file.
+     *
+     * @throws \Jawira\CaseConverter\CaseConverterException
+     */
+    public function createPhpFile($filepath): void
+    {
+        $feature = $this->parser->parse(file_get_contents($filepath));
+        $featureTitle = new Convert($feature->getTitle());
+        $outputFileName = $featureTitle->toPascal().'.php';
+        $file = $this->serialize($feature);
+
+        // Save file.
+        file_put_contents($this->outputDir.'/'.$outputFileName, $this->printer->printFile($file));
+    }
+
+    /**
+     * @return ArrayKeywords
+     */
+    public function getArrayKeywords(): ArrayKeywords
+    {
+        return new ArrayKeywords(
+            [
+                'en' => [
+                    'feature' => 'Feature',
+                    'background' => 'Background',
+                    'scenario' => 'Scenario',
+                    'scenario_outline' => 'Scenario Outline',
+                    'examples' => 'Examples',
+                    'given' => 'Given',
+                    'when' => 'When',
+                    'then' => 'Then',
+                    'and' => 'And',
+                    'but' => 'But',
+                ],
+            ]
+        );
     }
 }
