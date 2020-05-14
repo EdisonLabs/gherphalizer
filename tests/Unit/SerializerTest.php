@@ -31,7 +31,7 @@ class SerializerTest extends GherphalizerTestBase
     }
 
     /**
-     * @covers \EdisonLabs\Gherphalizer\Serializer::serialize
+     * @covers \EdisonLabs\Gherphalizer\Serializer::serialize()
      */
     public function testSerialize()
     {
@@ -47,7 +47,7 @@ class SerializerTest extends GherphalizerTestBase
     }
 
     /**
-     * @covers \EdisonLabs\Gherphalizer\Serializer::getGherkinFeatureFiles
+     * @covers \EdisonLabs\Gherphalizer\Serializer::getGherkinFeatureFiles()
      */
     public function testGetGherkinFeatureFiles()
     {
@@ -58,5 +58,32 @@ class SerializerTest extends GherphalizerTestBase
         $this->assertArrayHasKey('contact-form', $featureFiles);
         $this->assertEquals(realpath(dirname(__FILE__).'/../fixtures/contact-form.feature'), $featureFiles['contact-form']);
         $this->assertEquals(realpath(dirname(__FILE__).'/../fixtures/comment-form.feature'), $featureFiles['comment-form']);
+    }
+
+    /**
+     * @covers \EdisonLabs\Gherphalizer\Serializer::createPhpFiles()
+     */
+    public function testCreatePhpFiles()
+    {
+        $phpFiles = $this->serializer->createPhpFiles();
+        $this->assertNotEmpty($phpFiles);
+        $this->assertCount(2, $phpFiles);
+        $this->assertArrayHasKey('comment-form', $phpFiles);
+        $this->assertArrayHasKey('contact-form', $phpFiles);
+        $this->assertEquals(realpath(dirname(__FILE__).'/../fixtures/contact-form.feature'), $phpFiles['contact-form']);
+        $this->assertEquals(realpath(dirname(__FILE__).'/../fixtures/comment-form.feature'), $phpFiles['comment-form']);
+        $this->assertFileExists('/tmp/gherphalizer/ContactForm.php');
+        $this->assertFileExists('/tmp/gherphalizer/CommentForm.php');
+    }
+
+    /**
+     * @covers \EdisonLabs\Gherphalizer\Serializer::createPhpFile()
+     */
+    public function testCreatePhpFile()
+    {
+        $this->serializer->createPhpFile(dirname(__FILE__).'/../fixtures/contact-form.feature');
+        $filename = $this->defaultConfig['output-dir']."/FeatureContactForm.php";
+        $this->assertFileExists($filename);
+        $this->assertFileEquals('tests/fixtures/FeatureContactForm.php', $filename);
     }
 }
