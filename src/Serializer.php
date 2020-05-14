@@ -193,9 +193,11 @@ class Serializer
      * @param string $filepath
      *   The path to the Gherkin file.
      *
+     * @return false|int The number of bytes that were written to the file, or false on failure.
+     *
      * @throws \Jawira\CaseConverter\CaseConverterException
      */
-    public function createPhpFile($filepath): void
+    public function createPhpFile($filepath)
     {
         $feature = $this->parser->parse(file_get_contents($filepath));
         $featureTitle = new Convert($feature->getTitle());
@@ -203,7 +205,7 @@ class Serializer
         $file = $this->serialize($feature);
 
         // Save file.
-        file_put_contents($this->outputDir.'/'.$outputFileName, $this->printer->printFile($file));
+        return file_put_contents($this->outputDir.'/'.$outputFileName, $this->printer->printFile($file));
     }
 
     /**
