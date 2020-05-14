@@ -67,7 +67,7 @@ class PluginTest extends GherphalizerTestBase
         $this->assertInstanceOf('\EdisonLabs\Gherphalizer\PluginHandler', $plugin->getPluginHandler());
 
         $plugin->postCmd($this->eventMock);
-        $this->assertFileExists('/tmp/gherphalizer/ContactForm.php');
-        $this->assertFileExists('/tmp/gherphalizer/CommentForm.php');
+        $this->assertFileExists('/tmp/gherphalizer/FeatureContactForm.php');
+        $this->assertFileExists('/tmp/gherphalizer/FeatureCommentForm.php');
     }
 }

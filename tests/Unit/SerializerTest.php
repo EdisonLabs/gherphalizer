@@ -75,8 +75,8 @@ class SerializerTest extends GherphalizerTestBase
         $this->assertArrayHasKey('contact-form', $phpFiles);
         $this->assertEquals(realpath(dirname(__FILE__).'/../fixtures/contact-form.feature'), $phpFiles['contact-form']);
         $this->assertEquals(realpath(dirname(__FILE__).'/../fixtures/comment-form.feature'), $phpFiles['comment-form']);
-        $this->assertFileExists('/tmp/gherphalizer/ContactForm.php');
-        $this->assertFileExists('/tmp/gherphalizer/CommentForm.php');
+        $this->assertFileExists('/tmp/gherphalizer/FeatureContactForm.php');
+        $this->assertFileExists('/tmp/gherphalizer/FeatureCommentForm.php');
     }
 
     /**

@@ -38,8 +38,8 @@ class PluginHandlerTest extends GherphalizerTestBase
         $this->assertTrue($gherphalizer->isConfigured);
 
         $gherphalizer->serializeGherkinFiles();
-        $this->assertFileExists('/tmp/gherphalizer/ContactForm.php');
-        $this->assertFileExists('/tmp/gherphalizer/CommentForm.php');
+        $this->assertFileExists('/tmp/gherphalizer/FeatureContactForm.php');
+        $this->assertFileExists('/tmp/gherphalizer/FeatureCommentForm.php');
     }
 
     /**

@@ -199,9 +199,10 @@ class Serializer
      */
     public function createPhpFile($filepath)
     {
+        $this->prepareOutputDir();
         $feature = $this->parser->parse(file_get_contents($filepath));
         $featureTitle = new Convert($feature->getTitle());
-        $outputFileName = $featureTitle->toPascal().'.php';
+        $outputFileName = 'Feature'.$featureTitle->toPascal().'.php';
         $file = $this->serialize($feature);
 
         // Save file.

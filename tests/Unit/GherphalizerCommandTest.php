@@ -51,7 +51,7 @@ class GherphalizerCommandTest extends GherphalizerTestBase
         $composer->setPackage($this->packageMock);
         $gherphalizerCommand->setComposer($composer);
         $gherphalizerCommand->execute($this->inputMock, $this->outputMock, $this->defaultConfig);
-        $this->assertFileExists('/tmp/gherphalizer/ContactForm.php');
-        $this->assertFileExists('/tmp/gherphalizer/CommentForm.php');
+        $this->assertFileExists('/tmp/gherphalizer/FeatureContactForm.php');
+        $this->assertFileExists('/tmp/gherphalizer/FeatureCommentForm.php');
     }
 }

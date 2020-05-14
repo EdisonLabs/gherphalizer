@@ -38,14 +38,18 @@ class GherphalizerTestBase extends TestCase
     protected function tearDown()
     {
         $files = [
-            '/tmp/gherphalizer/ContactForm.php',
-            '/tmp/gherphalizer/CommentForm.php',
+            '/tmp/gherphalizer/FeatureContactForm.php',
+            '/tmp/gherphalizer/FeatureCommentForm.php',
         ];
 
         foreach ($files as $file) {
             if (file_exists($file)) {
                 unlink($file);
             }
+        }
+
+        if (is_dir('/tmp/gherphalizer')) {
+            rmdir('/tmp/gherphalizer');
         }
     }
 }
