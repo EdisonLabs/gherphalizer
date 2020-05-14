@@ -40,8 +40,7 @@ class SerializerTest extends GherphalizerTestBase
         $this->assertInstanceOf('Nette\PhpGenerator\PhpFile', $file);
 
         $this->serializer->createPhpFile(realpath(dirname(__FILE__).'/../fixtures/contact-form.feature'));
-
-        $filename = $this->serializer->outputDir."/FeatureContactForm.php";
+        $filename = $this->defaultConfig['output-dir']."/FeatureContactForm.php";
         $this->assertFileExists($filename);
         $this->assertFileEquals('tests/fixtures/FeatureContactForm.php', $filename);
     }
@@ -82,7 +81,7 @@ class SerializerTest extends GherphalizerTestBase
     public function testCreatePhpFile()
     {
         $this->serializer->createPhpFile(realpath(dirname(__FILE__).'/../fixtures/contact-form.feature'));
-        $filename = $this->serializer->outputDir."/FeatureContactForm.php";
+        $filename = $this->defaultConfig['output-dir']."/FeatureContactForm.php";
         $this->assertFileExists($filename);
         $this->assertFileEquals('tests/fixtures/FeatureContactForm.php', $filename);
     }
