@@ -30,6 +30,15 @@ class GherphalizerCommand extends BaseCommand
             }
 
             $configParameters = json_decode($configfileContent, true);
+        } else {
+            // Try to use the composer.json configuration.
+            $extra = $this->getComposer()->getPackage()->getExtra();
+
+            if (!isset($extra['gherphalizer'])) {
+                throw new \RuntimeException("Please provide a configuration file or configure it on your composer.json");
+            }
+
+            $configParameters = $extra['gherphalizer'];
         }
 
         $serializer = new Serializer($configParameters['files'], $configParameters['locations'], $configParameters['output-dir']);
@@ -65,7 +74,7 @@ class GherphalizerCommand extends BaseCommand
     private function createDefinition()
     {
         return new InputDefinition(array(
-            new InputOption('config', null, InputOption::VALUE_REQUIRED, 'A json file containing the plugin configuration.'),
+            new InputOption('config', null, InputOption::VALUE_OPTIONAL, 'A json file containing the plugin configuration.'),
         ));
     }
 }
