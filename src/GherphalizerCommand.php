@@ -65,7 +65,7 @@ class GherphalizerCommand extends BaseCommand
     private function createDefinition()
     {
         return new InputDefinition(array(
-            new InputOption('config', null, InputOption::VALUE_OPTIONAL, 'A json file containing the plugin configuration.'),
+            new InputOption('config', null, InputOption::VALUE_REQUIRED, 'A json file containing the plugin configuration.'),
         ));
     }
 }
