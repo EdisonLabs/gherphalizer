@@ -35,11 +35,14 @@ class SerializerTest extends GherphalizerTestBase
      */
     public function testSerialize()
     {
-        $feature = $this->serializer->parser->parse(file_get_contents(dirname(__FILE__).'/../fixtures/contact-form.feature'));
+        $featureFilePath = realpath(dirname(__FILE__).'/../fixtures/contact-form.feature');
+        $this->assertFileExists($featureFilePath);
+
+        $feature = $this->serializer->parser->parse(file_get_contents($featureFilePath));
         $file = $this->serializer->serialize($feature);
         $this->assertInstanceOf('Nette\PhpGenerator\PhpFile', $file);
 
-        $this->serializer->createPhpFile(realpath(dirname(__FILE__).'/../fixtures/contact-form.feature'));
+        $this->serializer->createPhpFile($featureFilePath);
         $filename = $this->defaultConfig['output-dir']."/FeatureContactForm.php";
         $this->assertFileExists($filename);
         $this->assertFileEquals('tests/fixtures/FeatureContactForm.php', $filename);
@@ -80,7 +83,10 @@ class SerializerTest extends GherphalizerTestBase
      */
     public function testCreatePhpFile()
     {
-        $this->serializer->createPhpFile(realpath(dirname(__FILE__).'/../fixtures/contact-form.feature'));
+        $featureFilePath = realpath(dirname(__FILE__).'/../fixtures/contact-form.feature');
+        $this->assertFileExists($featureFilePath);
+
+        $this->serializer->createPhpFile($featureFilePath);
         $filename = $this->defaultConfig['output-dir']."/FeatureContactForm.php";
         $this->assertFileExists($filename);
         $this->assertFileEquals('tests/fixtures/FeatureContactForm.php', $filename);
