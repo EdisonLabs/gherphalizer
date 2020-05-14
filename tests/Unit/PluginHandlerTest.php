@@ -1,23 +1,16 @@
 <?php
 
-namespace EdisonLabs\Gherphalizer\Unit;
+namespace EdisonLabs\Gherphalizer\Tests\Unit;
 
 use Composer\Composer;
 use EdisonLabs\Gherphalizer\PluginHandler;
-use PHPUnit\Framework\TestCase;
+use EdisonLabs\Gherphalizer\Tests\GherphalizerTestBase;
 
 /**
  * Tests for EdisonLabs\Gherphalizer\PluginHandler
  */
-class PluginHandlerTest extends TestCase
+class PluginHandlerTest extends GherphalizerTestBase
 {
-    /**
-     * A valid composer configuration for the plugin.
-     *
-     * @var array
-     */
-    protected $defaultConfig;
-
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
@@ -28,33 +21,9 @@ class PluginHandlerTest extends TestCase
      */
     protected function setUp()
     {
-        $this->defaultConfig = [
-            'files' => [
-                '*',
-            ],
-            'locations' => [
-                dirname(__FILE__).'/../../fixtures',
-            ],
-            'output-dir' => '/tmp/gherphalizer',
-        ];
+        parent::setUp();
 
         $this->io = $this->getMockBuilder('Composer\IO\IOInterface')->getMock();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function tearDown()
-    {
-        $files = [
-            '/tmp/gherphalizer/ContactForm.php',
-            '/tmp/gherphalizer/CommentForm.php',
-        ];
-        foreach ($files as $file) {
-            if (file_exists($file)) {
-                unlink($file);
-            }
-        }
     }
 
     /**

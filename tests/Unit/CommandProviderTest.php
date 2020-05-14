@@ -1,6 +1,6 @@
 <?php
 
-namespace EdisonLabs\Gherphalizer\Unit;
+namespace EdisonLabs\Gherphalizer\Tests\Unit;
 
 use EdisonLabs\Gherphalizer\CommandProvider;
 use PHPUnit\Framework\TestCase;

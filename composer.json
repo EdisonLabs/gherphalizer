@@ -7,6 +7,11 @@
             "EdisonLabs\\Gherphalizer\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "EdisonLabs\\Gherphalizer\\Tests\\": "tests"
+        }
+    },
     "require": {
         "behat/gherkin": "^4.6",
         "composer-plugin-api": "^1.1",
