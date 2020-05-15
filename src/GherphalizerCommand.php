@@ -30,7 +30,7 @@ class GherphalizerCommand extends BaseCommand
             }
 
             $configParameters = json_decode($configfileContent, true);
-        } else {
+        } elseif (!$configFile && empty($configParameters)) {
             // Try to use the composer.json configuration.
             $extra = $this->getComposer()->getPackage()->getExtra();
 
