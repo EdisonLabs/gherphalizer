@@ -107,6 +107,7 @@ class Serializer
 
             $scenarioTitle = new Convert('Scenario '.$scenario->getTitle());
             $class->addMethod($scenarioTitle->toCamel())
+                ->setStatic()
                 ->setReturnType(Type::ARRAY)
                 ->setBody("return [\n".$array.'];')
                 ->addComment($scenarioTitle->toSentence().'.')

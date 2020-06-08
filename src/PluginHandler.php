@@ -115,7 +115,7 @@ class PluginHandler
         }
 
         foreach ($processedFiles as $fileName => $filePath) {
-            $this->io->write("> gherphalizer: Generating $filePath", true);
+            $this->io->write("> gherphalizer: Processing $filePath", true);
         }
 
         $count = count($processedFiles);

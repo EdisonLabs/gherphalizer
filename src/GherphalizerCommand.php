@@ -51,7 +51,7 @@ class GherphalizerCommand extends BaseCommand
         }
 
         foreach ($processedFiles as $fileName => $filePath) {
-            $output->write("> gherphalizer: Generating $filePath", true);
+            $output->write("> gherphalizer: Processing $filePath", true);
         }
         $count = count($processedFiles);
         $output->write("> gherphalizer: Generated $count PHP files", true);
