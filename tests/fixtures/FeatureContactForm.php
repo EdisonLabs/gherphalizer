@@ -13,7 +13,7 @@ class FeatureContactForm
      * @return array
      *   The scenario's steps.
      */
-    public function scenarioProvidingValidInput(): array
+    public static function scenarioProvidingValidInput(): array
     {
         return [
             "Given that I visit the contact page",
@@ -28,7 +28,7 @@ class FeatureContactForm
      * @return array
      *   The scenario's steps.
      */
-    public function scenarioProvidingInvalidInput(): array
+    public static function scenarioProvidingInvalidInput(): array
     {
         return [
             "Given that I visit the contact page",
