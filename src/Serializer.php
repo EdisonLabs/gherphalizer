@@ -96,10 +96,6 @@ class Serializer
 
         foreach ($feature->getScenarios() as $scenario) {
             $steps = $scenario->getSteps();
-
-            $count = count($steps);
-            $i = 0;
-
             $array = '';
             foreach ($steps as $step) {
                 $array .= "\t\"".$step->getKeyword().' '.$step->getText().'",'."\n";
@@ -183,7 +179,7 @@ class Serializer
     public function prepareOutputDir()
     {
         // Check if the output directory exists and try to create it if it doesn't.
-        if (!is_dir($this->outputDir) && !mkdir($this->outputDir, 0700, TRUE)) {
+        if (!is_dir($this->outputDir) && !mkdir($this->outputDir, 0700, true)) {
             throw new \RuntimeException(sprintf('Output directory does not exist and it was not able to be created: %s.', $this->outputDir));
         }
     }
