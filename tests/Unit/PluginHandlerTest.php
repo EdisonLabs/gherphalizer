@@ -71,8 +71,8 @@ class PluginHandlerTest extends GherphalizerTestBase
     {
         $configParameters = $this->defaultConfig;
         $configParameters['locations'][] = 'test/missing/location';
-        $this->expectException(\RuntimeException::class);
         new PluginHandler(new Composer(), $this->io, $configParameters);
+        $this->addToAssertionCount(1);
     }
 
     /**
