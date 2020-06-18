@@ -41,6 +41,14 @@ class GherphalizerCommand extends BaseCommand
             $configParameters = $extra['gherphalizer'];
         }
 
+        foreach ($configParameters['locations'] as $sourcePath) {
+            if (!is_dir($sourcePath)) {
+                $output->write('> WARNING: One or more source locations do not exist, make sure all configured source locations exist.', true);
+
+                return;
+            }
+        }
+
         $serializer = new Serializer($configParameters['files'], $configParameters['locations'], $configParameters['output-dir']);
         $processedFiles = $serializer->createPhpFiles();
 
