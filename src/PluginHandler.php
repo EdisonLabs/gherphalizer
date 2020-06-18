@@ -73,20 +73,20 @@ class PluginHandler
 
         // Get files.
         if (empty($config['files'])) {
-            throw new \RuntimeException('Please configure gherphalizer files in your composer.json');
+            throw new \RuntimeException('Please configure gherphalizer files in your composer.json.');
         }
         $this->fileNamePatterns = $config['files'];
 
         // Get locations.
         if (empty($config['locations']) || !is_array($config['locations'])) {
-            throw new \RuntimeException('Please configure gherphalizer locations in your composer.json');
+            throw new \RuntimeException('Please configure gherphalizer locations in your composer.json.');
         }
 
         $this->sourcePaths = $config['locations'];
 
         // Get output dir.
         if (empty($config['output-dir'])) {
-            throw new \RuntimeException('Please configure gherphalizer output-dir in your composer.json');
+            throw new \RuntimeException('Please configure gherphalizer output-dir in your composer.json.');
         }
         $this->outputDir = $config['output-dir'];
 
@@ -99,14 +99,14 @@ class PluginHandler
     public function serializeGherkinFiles()
     {
         if (!$this->isConfigured) {
-            $this->io->write('> WARNING: Gherphalizer is not configured', true);
+            $this->io->write('> WARNING: Gherphalizer is not configured.', true);
 
             return;
         }
 
         foreach ($this->sourcePaths as $sourcePath) {
             if (!is_dir($sourcePath)) {
-                $this->io->write('> WARNING: one or more source locations do not exist, make sure all configured source locations exist', true);
+                $this->io->write('> WARNING: One or more source locations do not exist, make sure all configured source locations exist.', true);
 
                 return;
             }

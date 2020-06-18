@@ -35,7 +35,7 @@ class GherphalizerCommand extends BaseCommand
             $extra = $this->getComposer()->getPackage()->getExtra();
 
             if (!isset($extra['gherphalizer'])) {
-                throw new \RuntimeException("Please provide a configuration file or configure it on your composer.json");
+                throw new \RuntimeException("Please provide a configuration file or configure it on your composer.json.");
             }
 
             $configParameters = $extra['gherphalizer'];
