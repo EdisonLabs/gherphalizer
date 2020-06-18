@@ -35,26 +35,34 @@ class GherphalizerCommand extends BaseCommand
             $extra = $this->getComposer()->getPackage()->getExtra();
 
             if (!isset($extra['gherphalizer'])) {
-                throw new \RuntimeException("Please provide a configuration file or configure it on your composer.json");
+                throw new \RuntimeException("Please provide a configuration file or configure it on your composer.json.");
             }
 
             $configParameters = $extra['gherphalizer'];
+        }
+
+        foreach ($configParameters['locations'] as $sourcePath) {
+            if (!is_dir($sourcePath)) {
+                $output->write('> WARNING: One or more source locations do not exist, make sure all configured source locations exist.', true);
+
+                return;
+            }
         }
 
         $serializer = new Serializer($configParameters['files'], $configParameters['locations'], $configParameters['output-dir']);
         $processedFiles = $serializer->createPhpFiles();
 
         if (empty($processedFiles)) {
-            $output->write('>gherphalizer: No php files have been created', true);
+            $output->write('> Gherphalizer: No php files have been created.', true);
 
             return;
         }
 
         foreach ($processedFiles as $fileName => $filePath) {
-            $output->write("> gherphalizer: Processing $filePath", true);
+            $output->write("> Gherphalizer: Processing $filePath.", true);
         }
         $count = count($processedFiles);
-        $output->write("> gherphalizer: Generated $count PHP files", true);
+        $output->write("> Gherphalizer: Generated $count PHP files.", true);
     }
 
     /**

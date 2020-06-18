@@ -50,7 +50,18 @@ class PluginHandlerTest extends GherphalizerTestBase
         $configParameters = $this->defaultConfig;
         unset($configParameters['files']);
         $this->expectException(\RuntimeException::class);
-        $gherphalizer = new PluginHandler(new Composer(), $this->io, $configParameters);
+        new PluginHandler(new Composer(), $this->io, $configParameters);
+    }
+
+    /**
+     * Tests the plugin with missing locations configuration.
+     */
+    public function testEmptyLocationsConfiguration()
+    {
+        $configParameters = $this->defaultConfig;
+        unset($configParameters['locations']);
+        $this->expectException(\RuntimeException::class);
+        new PluginHandler(new Composer(), $this->io, $configParameters);
     }
 
     /**
@@ -59,9 +70,9 @@ class PluginHandlerTest extends GherphalizerTestBase
     public function testMissingLocationsConfiguration()
     {
         $configParameters = $this->defaultConfig;
-        unset($configParameters['locations']);
-        $this->expectException(\RuntimeException::class);
-        $gherphalizer = new PluginHandler(new Composer(), $this->io, $configParameters);
+        $configParameters['locations'][] = 'test/missing/location';
+        new PluginHandler(new Composer(), $this->io, $configParameters);
+        $this->addToAssertionCount(1);
     }
 
     /**
@@ -72,6 +83,6 @@ class PluginHandlerTest extends GherphalizerTestBase
         $configParameters = $this->defaultConfig;
         unset($configParameters['output-dir']);
         $this->expectException(\RuntimeException::class);
-        $gherphalizer = new PluginHandler(new Composer(), $this->io, $configParameters);
+        new PluginHandler(new Composer(), $this->io, $configParameters);
     }
 }

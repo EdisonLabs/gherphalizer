@@ -73,20 +73,20 @@ class PluginHandler
 
         // Get files.
         if (empty($config['files'])) {
-            throw new \RuntimeException('Please configure gherphalizer files in your composer.json');
+            throw new \RuntimeException('Please configure gherphalizer files in your composer.json.');
         }
         $this->fileNamePatterns = $config['files'];
 
         // Get locations.
         if (empty($config['locations']) || !is_array($config['locations'])) {
-            throw new \RuntimeException('Please configure gherphalizer locations in your composer.json');
+            throw new \RuntimeException('Please configure gherphalizer locations in your composer.json.');
         }
 
         $this->sourcePaths = $config['locations'];
 
         // Get output dir.
         if (empty($config['output-dir'])) {
-            throw new \RuntimeException('Please configure gherphalizer output-dir in your composer.json');
+            throw new \RuntimeException('Please configure gherphalizer output-dir in your composer.json.');
         }
         $this->outputDir = $config['output-dir'];
 
@@ -99,9 +99,17 @@ class PluginHandler
     public function serializeGherkinFiles()
     {
         if (!$this->isConfigured) {
-            $this->io->write('> WARNING: gherphalizer is not configured', true);
+            $this->io->write('> WARNING: Gherphalizer is not configured.', true);
 
             return;
+        }
+
+        foreach ($this->sourcePaths as $sourcePath) {
+            if (!is_dir($sourcePath)) {
+                $this->io->write('> WARNING: One or more source locations do not exist, make sure all configured source locations exist.', true);
+
+                return;
+            }
         }
 
         $serializer = new Serializer($this->fileNamePatterns, $this->sourcePaths, $this->outputDir);
@@ -109,16 +117,16 @@ class PluginHandler
         $processedFiles = $serializer->createPhpFiles();
 
         if (empty($processedFiles)) {
-            $this->io->write('>gherphalizer: No php files have been created', true);
+            $this->io->write('> Gherphalizer: No php files have been created.', true);
 
             return;
         }
 
         foreach ($processedFiles as $fileName => $filePath) {
-            $this->io->write("> gherphalizer: Processing $filePath", true);
+            $this->io->write("> Gherphalizer: Processing $filePath.", true);
         }
 
         $count = count($processedFiles);
-        $this->io->write("> gherphalizer: Generated $count PHP files", true);
+        $this->io->write("> Gherphalizer: Generated $count PHP files.", true);
     }
 }
