@@ -45,16 +45,16 @@ class GherphalizerCommand extends BaseCommand
         $processedFiles = $serializer->createPhpFiles();
 
         if (empty($processedFiles)) {
-            $output->write('>gherphalizer: No php files have been created', true);
+            $output->write('> Gherphalizer: No php files have been created.', true);
 
             return;
         }
 
         foreach ($processedFiles as $fileName => $filePath) {
-            $output->write("> gherphalizer: Processing $filePath", true);
+            $output->write("> Gherphalizer: Processing $filePath.", true);
         }
         $count = count($processedFiles);
-        $output->write("> gherphalizer: Generated $count PHP files", true);
+        $output->write("> Gherphalizer: Generated $count PHP files.", true);
     }
 
     /**
