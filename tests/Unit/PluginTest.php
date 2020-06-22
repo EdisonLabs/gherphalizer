@@ -42,7 +42,7 @@ class PluginTest extends GherphalizerTestBase
             ->getMock();
         $this->eventMock->expects($this->once())
             ->method('isDevMode')
-            ->will($this-returnValue(TRUE));
+            ->will($this->returnValue(TRUE));
     }
 
     /**
