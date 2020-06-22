@@ -60,7 +60,9 @@ class Plugin implements PluginInterface, EventSubscriberInterface, Capable
      */
     public function postCmd(Event $event)
     {
-        $this->pluginHandler->serializeGherkinFiles();
+        if ($event->isDevMode()) {
+            $this->pluginHandler->serializeGherkinFiles();
+        }
     }
 
     /**
