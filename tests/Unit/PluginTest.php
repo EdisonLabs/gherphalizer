@@ -40,6 +40,9 @@ class PluginTest extends GherphalizerTestBase
         $this->eventMock = $this->getMockBuilder('Composer\Script\Event')
             ->disableOriginalConstructor()
             ->getMock();
+        $this->eventMock->expects($this->once())
+            ->method('isDevMode')
+            ->will($this->returnValue(true));
     }
 
     /**
