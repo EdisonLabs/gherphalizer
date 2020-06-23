@@ -23,7 +23,7 @@
     },
     "require-dev": {
         "composer/composer": "dev-master",
-        "phpunit/phpunit": "^7.0"
+        "phpunit/phpunit": "^8.4"
     },
     "extra": {
         "class": "EdisonLabs\\Gherphalizer\\Plugin"
