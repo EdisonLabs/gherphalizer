@@ -25,7 +25,7 @@ class PluginTest extends GherphalizerTestBase
     /**
      * {@inheritdoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
