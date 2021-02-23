@@ -20,7 +20,7 @@ class SerializerTest extends GherphalizerTestBase
     /**
      * {@inheritdoc}
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->serializer = new Serializer(
