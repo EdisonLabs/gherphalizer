@@ -19,7 +19,7 @@ class GherphalizerTestBase extends TestCase
     /**
      * {@inheritdoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->defaultConfig = [
             'files' => [
@@ -35,7 +35,7 @@ class GherphalizerTestBase extends TestCase
     /**
      * {@inheritdoc}
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $files = [
             '/tmp/gherphalizer/FeatureContactForm.php',
