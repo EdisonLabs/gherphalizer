@@ -17,7 +17,7 @@
         "behat/gherkin": "^4.6",
         "composer-plugin-api": "^2.0",
         "nategood/commando": "^0.4",
-        "symfony/finder": "^4.4",
+        "symfony/finder": "^4.4 || ^6",
         "jawira/case-converter": "^3.4",
         "nette/php-generator": "^3.3"
     },
