@@ -9,12 +9,22 @@
          convertWarningsToExceptions="true"
          processIsolation="false"
          stopOnFailure="false"
->
+        >
 
     <testsuites>
-        <testsuite name="gherphalizer's test suit">
+        <testsuite name="gerphalizer's test suit">
             <directory>./tests/</directory>
         </testsuite>
     </testsuites>
+
+    <logging>
+        <log type="coverage-clover" target="build/logs/clover.xml"/>
+    </logging>
+
+    <filter>
+      <whitelist processUncoveredFilesFromWhitelist="true">
+        <directory suffix=".php">./src</directory>
+      </whitelist>
+    </filter>
 
 </phpunit>
